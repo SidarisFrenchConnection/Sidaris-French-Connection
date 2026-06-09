@@ -16,7 +16,7 @@
 }
 
 /* =======================
-   BACKGROUND PAPIER
+   PAPIER KRAFT BACKGROUND
 ======================= */
 
 body{
@@ -40,7 +40,7 @@ body::before{
 }
 
 /* =======================
-   GRAIN FILM 35MM
+   GRAIN 35MM
 ======================= */
 
 body::after{
@@ -55,7 +55,7 @@ body::after{
   background-image:url("https://grainy-gradients.vercel.app/noise.svg");
   background-size:140px 140px;
 
-  animation:grain 0.25s steps(2) infinite;
+  animation:grain 0.3s steps(2) infinite;
 }
 
 @keyframes grain{
@@ -67,25 +67,22 @@ body::after{
 }
 
 /* =======================
-   VHS TRACKING GLITCH
+   VHS TRACKING RÉALISTE
 ======================= */
 
 @keyframes vhsGlitch {
   0%   { transform: translate(0,0); }
-  10%  { transform: translate(-2px,1px); }
-  20%  { transform: translate(2px,-1px); }
-  30%  { transform: translate(-1px,0px); }
-  40%  { transform: translate(1px,1px); }
-  50%  { transform: translate(0,0); }
-  60%  { transform: translate(-2px,-1px); }
-  70%  { transform: translate(2px,1px); }
-  80%  { transform: translate(-1px,0px); }
-  90%  { transform: translate(1px,-1px); }
+  90%  { transform: translate(0,0); }
+  92%  { transform: translate(-2px,1px); }
+  93%  { transform: translate(3px,-1px); }
+  94%  { transform: translate(-1px,0px); }
+  95%  { transform: translate(2px,1px); }
+  96%  { transform: translate(0,0); }
   100% { transform: translate(0,0); }
 }
 
 .vhs{
-  animation:vhsGlitch 0.12s infinite;
+  animation:vhsGlitch 4s infinite;
 }
 
 /* scanlines VHS */
@@ -100,22 +97,21 @@ body::after{
     to bottom,
     rgba(0,0,0,0.05),
     rgba(0,0,0,0.05) 1px,
-    transparent 2px,
-    transparent 4px
+    transparent 3px
   );
 
-  opacity:0.4;
+  opacity:0.35;
 }
 
 /* =======================
-   POUSSIÈRE
+   POUSSIÈRE 35MM
 ======================= */
 
 .dust{
   position:fixed;
   width:3px;
   height:3px;
-  background:rgba(255,255,255,0.4);
+  background:rgba(255,255,255,0.45);
   border-radius:50%;
   pointer-events:none;
   z-index:40;
@@ -130,7 +126,7 @@ body::after{
 }
 
 /* =======================
-   MAGAZINE
+   STRUCTURE
 ======================= */
 
 .magazine{
@@ -139,15 +135,11 @@ body::after{
   perspective:1500px;
 }
 
-/* =======================
-   HEADER
-======================= */
-
+/* HEADER */
 header{
   text-align:center;
   background:rgba(255,255,255,0.8);
   backdrop-filter:blur(2px);
-
   border-bottom:2px solid var(--rose);
 }
 
@@ -177,10 +169,7 @@ header p{
   color:#444;
 }
 
-/* =======================
-   CONTENT
-======================= */
-
+/* CONTENT */
 main{
   max-width:900px;
   margin:0 auto;
@@ -275,7 +264,7 @@ function turnPage(){
   document.getElementById("magazine").classList.toggle("flipped");
 }
 
-/* poussière */
+/* poussière dynamique */
 for(let i=0;i<50;i++){
   const d=document.createElement("div");
   d.className="dust";
