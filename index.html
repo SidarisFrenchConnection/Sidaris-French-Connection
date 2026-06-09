@@ -16,7 +16,7 @@
 }
 
 /* =======================
-   BASE PAPIER KRAFT
+   BACKGROUND PAPIER
 ======================= */
 
 body{
@@ -29,18 +29,18 @@ body{
   color:#1a1a1a;
 }
 
-/* voile léger mais propre */
+/* voile léger lisible */
 body::before{
   content:"";
   position:fixed;
   inset:0;
   background:rgba(255,250,240,0.25);
   pointer-events:none;
-  z-index:0;
+  z-index:1;
 }
 
 /* =======================
-   GRAIN 35MM (VISIBLE MAIS CLEAN)
+   GRAIN CINÉMA (VISIBLE)
 ======================= */
 
 body::after{
@@ -48,16 +48,14 @@ body::after{
   position:fixed;
   inset:0;
   pointer-events:none;
-  z-index:10;
+  z-index:50;
 
-  opacity:0.18; /* 🔥 plus visible (clé sur fond carton) */
+  opacity:0.2;
 
   background-image:url("https://grainy-gradients.vercel.app/noise.svg");
-  background-size:160px 160px;
+  background-size:140px 140px;
 
-  mix-blend-mode:overlay;
-
-  animation:grain 0.35s steps(2) infinite;
+  animation:grain 0.25s steps(2) infinite;
 }
 
 @keyframes grain{
@@ -74,39 +72,36 @@ body::after{
 
 .dust{
   position:fixed;
-  width:2px;
-  height:2px;
-
-  background:rgba(255,255,255,0.35); /* clair = visible sur carton */
-
+  width:3px;
+  height:3px;
+  background:rgba(255,255,255,0.5);
   border-radius:50%;
   pointer-events:none;
-  z-index:9;
+  z-index:40;
 
   animation:dustFloat linear infinite;
 }
 
 @keyframes dustFloat{
   0%{
-    transform:translateY(100vh) translateX(0);
+    transform:translateY(100vh);
     opacity:0;
   }
-  10%{opacity:0.5;}
-  50%{opacity:0.2;}
+  10%{opacity:0.6;}
   100%{
-    transform:translateY(-10vh) translateX(20px);
+    transform:translateY(-10vh);
     opacity:0;
   }
 }
 
 /* =======================
-   LAYOUT
+   MAGAZINE
 ======================= */
 
 .magazine{
   position:relative;
   z-index:2;
-  perspective:1800px;
+  perspective:1500px;
 }
 
 /* =======================
@@ -115,7 +110,7 @@ body::after{
 
 header{
   text-align:center;
-  background:rgba(255,255,255,0.75);
+  background:rgba(255,255,255,0.8);
   backdrop-filter:blur(2px);
 
   border-bottom:2px solid var(--rose);
@@ -154,7 +149,7 @@ header p{
 }
 
 /* =======================
-   CONTENT
+   CONTENU
 ======================= */
 
 main{
@@ -164,7 +159,7 @@ main{
 }
 
 .box{
-  background:rgba(255,255,255,0.85);
+  background:rgba(255,255,255,0.9);
   border-left:5px solid var(--rose);
   padding:20px;
   margin:20px 0;
@@ -199,8 +194,8 @@ footer{
 ======================= */
 
 .magazine.flipped header{
-  transform:rotateY(-120deg);
-  box-shadow:-40px 0 60px rgba(0,0,0,0.25);
+  transform:rotateY(-140deg);
+  box-shadow:-30px 0 60px rgba(0,0,0,0.3);
 }
 </style>
 </head>
@@ -229,16 +224,16 @@ footer{
   <div class="box">
     <h2>À propos</h2>
     <p>
-      Fan club français des oeuvres d'Andy Sidaris et de ses proches
+      Fan club français des œuvres d’Andy Sidaris et du cinéma d’exploitation 80s.
     </p>
   </div>
 
   <div class="box">
     <h2>Travaux récents</h2>
     <ul>
-      <li>Vulgarisation des oeuvres</li>
+      <li>Vulgarisation des œuvres</li>
       <li>Critiques de séries B</li>
-      <li>Sous-titrage de films jamais distribués en France</li>
+      <li>Sous-titres de films rares</li>
     </ul>
   </div>
 
@@ -264,16 +259,16 @@ function turnPage(){
   document.getElementById("magazine").classList.toggle("flipped");
 }
 
-/* poussière dynamique */
-for(let i=0;i<60;i++){
+/* poussière fiable */
+for(let i=0;i<50;i++){
   const d=document.createElement("div");
   d.className="dust";
 
   d.style.left=Math.random()*100+"vw";
   d.style.top=Math.random()*100+"vh";
 
-  d.style.animationDuration=(3+Math.random()*5)+"s";
-  d.style.animationDelay=(Math.random()*5)+"s";
+  d.style.animationDuration=(2+Math.random()*4)+"s";
+  d.style.animationDelay=(Math.random()*3)+"s";
 
   document.body.appendChild(d);
 }
