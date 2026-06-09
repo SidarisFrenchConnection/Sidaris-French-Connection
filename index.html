@@ -16,30 +16,31 @@
 }
 
 /* =======================
-   BASE
+   BASE PAPIER KRAFT
 ======================= */
 
 body{
   margin:0;
   font-family:"Inter",sans-serif;
+
   background:url("Indieground-Free-VintagePaper-Textures-04.jpg");
   background-size:cover;
   background-attachment:fixed;
   color:#1a1a1a;
 }
 
-/* voile TRÈS léger (corrigé, beaucoup plus subtil) */
+/* voile léger mais propre */
 body::before{
   content:"";
   position:fixed;
   inset:0;
-  background:rgba(255,250,240,0.35);
+  background:rgba(255,250,240,0.25);
   pointer-events:none;
   z-index:0;
 }
 
 /* =======================
-   GRAIN 35MM (soft)
+   GRAIN 35MM (VISIBLE MAIS CLEAN)
 ======================= */
 
 body::after{
@@ -47,22 +48,55 @@ body::after{
   position:fixed;
   inset:0;
   pointer-events:none;
-  z-index:1;
-  opacity:0.06; /* IMPORTANT: très léger */
+  z-index:10;
+
+  opacity:0.18; /* 🔥 plus visible (clé sur fond carton) */
 
   background-image:url("https://grainy-gradients.vercel.app/noise.svg");
-  background-size:180px 180px;
+  background-size:160px 160px;
 
-  mix-blend-mode:multiply;
-  animation:grain 0.5s steps(2) infinite;
+  mix-blend-mode:overlay;
+
+  animation:grain 0.35s steps(2) infinite;
 }
 
 @keyframes grain{
   0%{transform:translate(0,0);}
   25%{transform:translate(-1px,1px);}
   50%{transform:translate(1px,-1px);}
-  75%{transform:translate(1px,0);}
+  75%{transform:translate(-1px,0);}
   100%{transform:translate(0,0);}
+}
+
+/* =======================
+   POUSSIÈRE 35MM
+======================= */
+
+.dust{
+  position:fixed;
+  width:2px;
+  height:2px;
+
+  background:rgba(255,255,255,0.35); /* clair = visible sur carton */
+
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9;
+
+  animation:dustFloat linear infinite;
+}
+
+@keyframes dustFloat{
+  0%{
+    transform:translateY(100vh) translateX(0);
+    opacity:0;
+  }
+  10%{opacity:0.5;}
+  50%{opacity:0.2;}
+  100%{
+    transform:translateY(-10vh) translateX(20px);
+    opacity:0;
+  }
 }
 
 /* =======================
@@ -76,13 +110,13 @@ body::after{
 }
 
 /* =======================
-   HEADER (PAGE)
+   HEADER
 ======================= */
 
 header{
   text-align:center;
   background:rgba(255,255,255,0.75);
-  backdrop-filter: blur(2px);
+  backdrop-filter:blur(2px);
 
   border-bottom:2px solid var(--rose);
 
@@ -161,7 +195,7 @@ footer{
 }
 
 /* =======================
-   PAGE FLIP (CORRIGÉ)
+   PAGE FLIP
 ======================= */
 
 .magazine.flipped header{
@@ -228,6 +262,20 @@ footer{
 <script>
 function turnPage(){
   document.getElementById("magazine").classList.toggle("flipped");
+}
+
+/* poussière dynamique */
+for(let i=0;i<60;i++){
+  const d=document.createElement("div");
+  d.className="dust";
+
+  d.style.left=Math.random()*100+"vw";
+  d.style.top=Math.random()*100+"vh";
+
+  d.style.animationDuration=(3+Math.random()*5)+"s";
+  d.style.animationDelay=(Math.random()*5)+"s";
+
+  document.body.appendChild(d);
 }
 </script>
 
