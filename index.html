@@ -1,139 +1,192 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Sidaris French Connection</title>
+<title>Sidaris French Connection</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --rose: #d81b60;
-      --brun: #8b5e3c;
-      --text: #1a1a1a;
-    }
+<style>
+:root{
+  --rose:#d81b60;
+  --brun:#8b5e3c;
+}
 
-    body {
-      margin: 0;
-      font-family: "Inter", Arial, sans-serif;
+/* =======================
+   BASE
+======================= */
 
-      /* 🟡 TEXTURE PAPIER EN BACKGROUND */
-      background: url("Indieground-Free-VintagePaper-Textures-04.jpg");
-      background-size: cover;
-      background-attachment: fixed;
-      color: var(--text);
-    }
+body{
+  margin:0;
+  font-family:"Inter",sans-serif;
+  background:url("Indieground-Free-VintagePaper-Textures-04.jpg");
+  background-size:cover;
+  background-attachment:fixed;
+  color:#1a1a1a;
+}
 
-    /* léger voile pour lisibilité */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(255, 250, 240, 0.65);
-      pointer-events: none;
-    }
+/* voile TRÈS léger (corrigé, beaucoup plus subtil) */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(255,250,240,0.35);
+  pointer-events:none;
+  z-index:0;
+}
 
-    header {
-      position: relative;
-      text-align: center;
-      padding-bottom: 30px;
-    }
+/* =======================
+   GRAIN 35MM (soft)
+======================= */
 
-    /* LOGO plus gros type couverture magazine */
-    .logo {
-      padding: 25px 0 10px;
-    }
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+  opacity:0.06; /* IMPORTANT: très léger */
 
-    .logo img {
-      height: 110px;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-    }
+  background-image:url("https://grainy-gradients.vercel.app/noise.svg");
+  background-size:180px 180px;
 
-    /* BANNIÈRE HERO XXL */
-    .banner img {
-      width: 100%;
-      max-height: 520px;
-      object-fit: cover;
-      display: block;
-      border-bottom: 4px solid var(--rose);
-      filter: contrast(1.05) saturate(1.1);
-    }
+  mix-blend-mode:multiply;
+  animation:grain 0.5s steps(2) infinite;
+}
 
-    h1 {
-      font-family: "Playfair Display", serif;
-      font-size: 3em;
-      margin: 15px 0 5px;
-      color: var(--rose);
-    }
+@keyframes grain{
+  0%{transform:translate(0,0);}
+  25%{transform:translate(-1px,1px);}
+  50%{transform:translate(1px,-1px);}
+  75%{transform:translate(1px,0);}
+  100%{transform:translate(0,0);}
+}
 
-    header p {
-      margin: 0 0 20px;
-      font-style: italic;
-      color: #444;
-    }
+/* =======================
+   LAYOUT
+======================= */
 
-    main {
-      position: relative;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 30px 20px;
-    }
+.magazine{
+  position:relative;
+  z-index:2;
+  perspective:1800px;
+}
 
-    .box {
-      background: rgba(255,255,255,0.75);
-      border: 1px solid rgba(0,0,0,0.08);
-      border-left: 5px solid var(--rose);
-      padding: 20px;
-      margin: 20px 0;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-      backdrop-filter: blur(2px);
-    }
+/* =======================
+   HEADER (PAGE)
+======================= */
 
-    h2 {
-      font-family: "Playfair Display", serif;
-      color: var(--brun);
-      margin-top: 0;
-    }
+header{
+  text-align:center;
+  background:rgba(255,255,255,0.75);
+  backdrop-filter: blur(2px);
 
-    a {
-      color: var(--rose);
-      text-decoration: none;
-    }
+  border-bottom:2px solid var(--rose);
 
-    a:hover {
-      text-decoration: underline;
-    }
+  transform-origin:left center;
+  transition:transform 1s ease, box-shadow 1s ease;
+}
 
-    footer {
-      text-align: center;
-      padding: 30px;
-      font-size: 0.8em;
-      color: #555;
-      margin-top: 40px;
-    }
-  </style>
+/* LOGO */
+.logo img{
+  height:110px;
+  margin-top:20px;
+}
+
+/* BANNIÈRE */
+.banner img{
+  width:100%;
+  max-height:520px;
+  object-fit:cover;
+  display:block;
+  border-bottom:4px solid var(--rose);
+}
+
+/* TITRE */
+h1{
+  font-family:"Playfair Display",serif;
+  font-size:3em;
+  margin:15px 0 5px;
+  color:var(--rose);
+}
+
+header p{
+  margin-bottom:15px;
+  font-style:italic;
+  color:#444;
+}
+
+/* =======================
+   CONTENT
+======================= */
+
+main{
+  max-width:900px;
+  margin:0 auto;
+  padding:30px 20px;
+}
+
+.box{
+  background:rgba(255,255,255,0.85);
+  border-left:5px solid var(--rose);
+  padding:20px;
+  margin:20px 0;
+  box-shadow:0 6px 20px rgba(0,0,0,0.08);
+}
+
+h2{
+  font-family:"Playfair Display",serif;
+  color:var(--brun);
+  margin-top:0;
+}
+
+/* LINKS */
+a{
+  color:var(--rose);
+  text-decoration:none;
+}
+a:hover{
+  text-decoration:underline;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  font-size:0.8em;
+  color:#555;
+}
+
+/* =======================
+   PAGE FLIP (CORRIGÉ)
+======================= */
+
+.magazine.flipped header{
+  transform:rotateY(-120deg);
+  box-shadow:-40px 0 60px rgba(0,0,0,0.25);
+}
+</style>
 </head>
 
 <body>
 
-<header>
+<div class="magazine" id="magazine">
 
-  <!-- LOGO -->
+<header onclick="turnPage()">
+
   <div class="logo">
     <img src="LOGO-DONA-4.png" alt="Logo">
   </div>
 
-  <!-- BANNIÈRE XXL -->
   <div class="banner">
-    <img src="banniere-sd.jpg" alt="Bannière Sidaris">
+    <img src="banniere-sd.jpg" alt="Bannière">
   </div>
 
   <h1>Sidaris French Connection</h1>
-  <p>Cinéma d’exploitation • archives • VHS culture • glamour 80s</p>
+  <p>Cinéma d’exploitation • archives • VHS culture</p>
 
 </header>
 
@@ -142,17 +195,16 @@
   <div class="box">
     <h2>À propos</h2>
     <p>
-      Projet d’archives et d’analyse autour du cinéma d’exploitation américain,
-      des productions de type Sidaris et de la culture visuelle glamour des années 80.
+      Projet d’archives et d’analyse autour du cinéma d’exploitation américain.
     </p>
   </div>
 
   <div class="box">
     <h2>Travaux récents</h2>
     <ul>
-      <li>Sous-titres français de films jamais distribués</li>
-      <li>Critiques de films</li>
-      <li>Vulgarisation des œuvres de la famille Sidaris</li>
+      <li>Sous-titres français de films rares</li>
+      <li>Critiques de cinéma</li>
+      <li>Exploration Sidaris</li>
     </ul>
   </div>
 
@@ -170,6 +222,14 @@
 <footer>
   © Sidaris French Connection — archive cinéma d’exploitation
 </footer>
+
+</div>
+
+<script>
+function turnPage(){
+  document.getElementById("magazine").classList.toggle("flipped");
+}
+</script>
 
 </body>
 </html>
