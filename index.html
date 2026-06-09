@@ -4,109 +4,93 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Sidaris French Connection | Cinéma bis, critiques et sous-titres</title>
-  <meta name="description" content="Sidaris French Connection : critiques, analyses et sous-titres français des films d'Andy Sidaris et du cinéma d'exploitation.">
+  <title>Sidaris French Connection</title>
+  <meta name="description" content="Cinéma d'exploitation, archives et critiques.">
 
-  <meta property="og:title" content="Sidaris French Connection">
-  <meta property="og:description" content="Critiques, analyses et sous-titres des films d'Andy Sidaris et du cinéma bis.">
-  <meta property="og:type" content="website">
-
-  <!-- VHS / 80s font -->
+  <!-- Fonts style magazine -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
     body {
       margin: 0;
-      font-family: "Orbitron", Arial, sans-serif;
-      background: radial-gradient(circle at top, #120018, #05010a 70%);
-      color: #f2f2f2;
-      overflow-x: hidden;
-    }
-
-    /* SCANLINES VHS */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        0deg,
-        rgba(255,255,255,0.03),
-        rgba(255,255,255,0.03) 1px,
-        transparent 2px,
-        transparent 4px
-      );
-      pointer-events: none;
-      z-index: 9999;
-      mix-blend-mode: overlay;
+      font-family: "Inter", Arial, sans-serif;
+      background: #f3efe6;
+      color: #1a1a1a;
     }
 
     header {
+      background: #ffffff;
+      border-bottom: 1px solid #ddd;
       text-align: center;
-      border-bottom: 3px solid #ff2bd6;
-      box-shadow: 0 0 20px #ff2bd6;
+      padding-bottom: 20px;
     }
 
+    /* LOGO */
+    .logo {
+      padding: 20px 0 10px;
+    }
+
+    .logo img {
+      height: 70px;
+      object-fit: contain;
+    }
+
+    /* BANNIERE */
     .banner img {
       width: 100%;
       display: block;
-      filter: contrast(1.2) saturate(1.6) hue-rotate(-15deg);
+      filter: contrast(1.05) saturate(0.9);
     }
 
     h1 {
-      margin: 0;
-      padding: 20px 10px 0;
-      font-size: 2.2em;
-      color: #00e5ff;
-      text-shadow: 0 0 10px #00e5ff, 0 0 25px #ff2bd6;
+      font-family: "Playfair Display", serif;
+      font-size: 2.4em;
+      margin: 10px 0 5px;
+      letter-spacing: 0.5px;
     }
 
     header p {
-      margin: 10px 0 20px;
-      color: #ff2bd6;
-      letter-spacing: 2px;
+      margin: 0 0 15px;
+      color: #555;
+      font-style: italic;
     }
 
     main {
       max-width: 900px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 30px 20px;
     }
 
     .box {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: #fff;
+      border: 1px solid #e6e6e6;
       padding: 20px;
       margin: 20px 0;
-      border-left: 4px solid #ff2bd6;
-      box-shadow: 0 0 15px rgba(255,0,200,0.2);
-      backdrop-filter: blur(3px);
+      box-shadow: 0 3px 15px rgba(0,0,0,0.05);
     }
 
     h2 {
-      color: #00e5ff;
-      text-shadow: 0 0 10px #00e5ff;
+      font-family: "Playfair Display", serif;
+      font-size: 1.6em;
+      margin-top: 0;
     }
 
     a {
-      color: #ff2bd6;
+      color: #8b5e3c;
       text-decoration: none;
     }
 
     a:hover {
-      color: #00e5ff;
-      text-shadow: 0 0 10px #00e5ff;
+      text-decoration: underline;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 25px;
       font-size: 0.8em;
       color: #777;
-      border-top: 1px solid #333;
+      border-top: 1px solid #ddd;
       margin-top: 40px;
     }
   </style>
@@ -116,13 +100,18 @@
 
 <header>
 
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="LOGO-DONA-4.png" alt="Logo">
+  </div>
+
   <!-- BANNIÈRE -->
   <div class="banner">
-    <img src="banniere-sd.jpg" alt="Sidaris banner">
+    <img src="banniere-sd.jpg" alt="Bannière">
   </div>
 
   <h1>Sidaris French Connection</h1>
-  <p>BULLETS • BOMBS • BABES • VHS DREAMS</p>
+  <p>Cinéma d’exploitation • archives • glamour industriel • VHS culture</p>
 
 </header>
 
@@ -131,40 +120,40 @@
   <div class="box">
     <h2>À propos</h2>
     <p>
-      Sidaris French Connection est un projet dédié au cinéma d’exploitation,
-      aux films d’Andy Sidaris et à la culture VHS 80s : néons, plages, action cheap et glamour artificiel.
+      Projet d’archives et d’analyse autour du cinéma d’exploitation américain,
+      des productions de type Sidaris et de la culture visuelle glamour des années 80.
     </p>
   </div>
 
   <div class="box">
     <h2>Travaux récents</h2>
     <ul>
-      <li>Sous-titres français de <em>Stacey (1973)</em></li>
-      <li>Critiques de films d’Andy Sidaris</li>
-      <li>Exploration du cinéma bis américain</li>
+      <li>Sous-titres français de films rares</li>
+      <li>Critiques de cinéma d’exploitation</li>
+      <li>Études de mise en scène et esthétique VHS</li>
     </ul>
   </div>
 
   <div class="box">
     <h2>Liens</h2>
     <p>
-      Instagram : <a href="https://instagram.com/" target="_blank">Profil</a><br>
-      SensCritique : <a href="https://www.senscritique.com/" target="_blank">Profil</a><br>
-      Linktree : <a href="https://linktr.ee/" target="_blank">Hub</a>
+      Instagram : <a href="#">Profil</a><br>
+      SensCritique : <a href="#">Profil</a><br>
+      Linktree : <a href="#">Hub</a>
     </p>
   </div>
 
   <div class="box">
-    <h2>Contact / projet</h2>
+    <h2>Contact</h2>
     <p>
-      Archive indépendante dédiée au cinéma d’exploitation et aux sous-titres non officiels.
+      Projet indépendant d’archivage et de critique cinéma.
     </p>
   </div>
 
 </main>
 
 <footer>
-  © Sidaris French Connection — VHS exploitation archive
+  © Sidaris French Connection — archive cinéma d’exploitation
 </footer>
 
 </body>
