@@ -16,7 +16,7 @@
 }
 
 /* =======================
-   PAPIER KRAFT BACKGROUND
+   BACKGROUND PAPIER
 ======================= */
 
 body{
@@ -29,7 +29,6 @@ body{
   color:#1a1a1a;
 }
 
-/* voile léger */
 body::before{
   content:"";
   position:fixed;
@@ -40,7 +39,7 @@ body::before{
 }
 
 /* =======================
-   GRAIN 35MM
+   GRAIN CINÉMA
 ======================= */
 
 body::after{
@@ -50,42 +49,41 @@ body::after{
   pointer-events:none;
   z-index:50;
 
-  opacity:0.18;
+  opacity:0.15;
 
   background-image:url("https://grainy-gradients.vercel.app/noise.svg");
-  background-size:140px 140px;
+  background-size:150px 150px;
 
-  animation:grain 0.3s steps(2) infinite;
+  animation:grain 0.4s steps(2) infinite;
 }
 
 @keyframes grain{
   0%{transform:translate(0,0);}
   25%{transform:translate(-1px,1px);}
   50%{transform:translate(1px,-1px);}
-  75%{transform:translate(1px,0);}
+  75%{transform:translate(-1px,0);}
   100%{transform:translate(0,0);}
 }
 
 /* =======================
-   VHS TRACKING RÉALISTE
+   VHS MICRO TRACKING (IMPORTANT)
 ======================= */
 
-@keyframes vhsGlitch {
+@keyframes vhsMicro {
   0%   { transform: translate(0,0); }
-  90%  { transform: translate(0,0); }
-  92%  { transform: translate(-2px,1px); }
-  93%  { transform: translate(3px,-1px); }
-  94%  { transform: translate(-1px,0px); }
-  95%  { transform: translate(2px,1px); }
+  92%  { transform: translate(0,0); }   /* stable 92% du temps */
+  93%  { transform: translate(1px,0); }  /* micro shift 1px */
+  94%  { transform: translate(-1px,0); }
+  95%  { transform: translate(0,1px); }
   96%  { transform: translate(0,0); }
   100% { transform: translate(0,0); }
 }
 
 .vhs{
-  animation:vhsGlitch 4s infinite;
+  animation:vhsMicro 6s infinite; /* 🔥 lent */
 }
 
-/* scanlines VHS */
+/* scanlines légères */
 .vhs::after{
   content:"";
   position:fixed;
@@ -95,23 +93,23 @@ body::after{
 
   background:repeating-linear-gradient(
     to bottom,
-    rgba(0,0,0,0.05),
-    rgba(0,0,0,0.05) 1px,
+    rgba(0,0,0,0.04),
+    rgba(0,0,0,0.04) 1px,
     transparent 3px
   );
 
-  opacity:0.35;
+  opacity:0.25;
 }
 
 /* =======================
-   POUSSIÈRE 35MM
+   POUSSIÈRE
 ======================= */
 
 .dust{
   position:fixed;
-  width:3px;
-  height:3px;
-  background:rgba(255,255,255,0.45);
+  width:2px;
+  height:2px;
+  background:rgba(255,255,255,0.4);
   border-radius:50%;
   pointer-events:none;
   z-index:40;
@@ -121,7 +119,7 @@ body::after{
 
 @keyframes dustFloat{
   0%{transform:translateY(100vh);opacity:0;}
-  10%{opacity:0.6;}
+  10%{opacity:0.5;}
   100%{transform:translateY(-10vh);opacity:0;}
 }
 
@@ -135,7 +133,6 @@ body::after{
   perspective:1500px;
 }
 
-/* HEADER */
 header{
   text-align:center;
   background:rgba(255,255,255,0.8);
@@ -169,7 +166,6 @@ header p{
   color:#444;
 }
 
-/* CONTENT */
 main{
   max-width:900px;
   margin:0 auto;
@@ -187,15 +183,11 @@ main{
 h2{
   font-family:"Playfair Display",serif;
   color:var(--brun);
-  margin-top:0;
 }
 
 a{
   color:var(--rose);
   text-decoration:none;
-}
-a:hover{
-  text-decoration:underline;
 }
 
 footer{
@@ -264,16 +256,16 @@ function turnPage(){
   document.getElementById("magazine").classList.toggle("flipped");
 }
 
-/* poussière dynamique */
-for(let i=0;i<50;i++){
+/* poussière */
+for(let i=0;i<45;i++){
   const d=document.createElement("div");
   d.className="dust";
 
   d.style.left=Math.random()*100+"vw";
   d.style.top=Math.random()*100+"vh";
 
-  d.style.animationDuration=(2+Math.random()*4)+"s";
-  d.style.animationDelay=(Math.random()*3)+"s";
+  d.style.animationDuration=(3+Math.random()*5)+"s";
+  d.style.animationDelay=(Math.random()*5)+"s";
 
   document.body.appendChild(d);
 }
