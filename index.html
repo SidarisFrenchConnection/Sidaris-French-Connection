@@ -1,139 +1,158 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Sidaris French Connection</title>
+<title>Sidaris French Connection</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --rose: #d81b60;
-      --brun: #8b5e3c;
-      --text: #1a1a1a;
-    }
+<style>
+:root{
+  --rose:#d81b60;
+  --brun:#8b5e3c;
+}
 
-    body {
-      margin: 0;
-      font-family: "Inter", Arial, sans-serif;
+body{
+  margin:0;
+  font-family:"Inter",sans-serif;
+  background:url("Indieground-Free-VintagePaper-Textures-04.jpg");
+  background-size:cover;
+  background-attachment:fixed;
+  color:#1a1a1a;
+}
 
-      /* 🟡 TEXTURE PAPIER EN BACKGROUND */
-      background: url("Indieground-Free-VintagePaper-Textures-04.jpg");
-      background-size: cover;
-      background-attachment: fixed;
-      color: var(--text);
-    }
+/* voile papier */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(255,250,240,0.65);
+  pointer-events:none;
+}
 
-    /* léger voile pour lisibilité */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(255, 250, 240, 0.65);
-      pointer-events: none;
-    }
+/* CONTAINER MAGAZINE */
+.magazine{
+  perspective:2000px;
+}
 
-    header {
-      position: relative;
-      text-align: center;
-      padding-bottom: 30px;
-    }
+/* ===== HEADER ===== */
+header{
+  text-align:center;
+  padding-bottom:20px;
+  transform-origin:left center;
+  transition:transform 1.2s ease, box-shadow 1.2s ease;
+  position:relative;
+  z-index:3;
+  background:rgba(255,255,255,0.6);
+  backdrop-filter: blur(2px);
+  border-bottom:2px solid var(--rose);
+}
 
-    /* LOGO plus gros type couverture magazine */
-    .logo {
-      padding: 25px 0 10px;
-    }
+/* LOGO */
+.logo img{
+  height:110px;
+  margin-top:20px;
+  filter:drop-shadow(0 5px 10px rgba(0,0,0,0.2));
+}
 
-    .logo img {
-      height: 110px;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-    }
+/* BANNIÈRE */
+.banner img{
+  width:100%;
+  max-height:520px;
+  object-fit:cover;
+  display:block;
+  border-bottom:4px solid var(--rose);
+}
 
-    /* BANNIÈRE HERO XXL */
-    .banner img {
-      width: 100%;
-      max-height: 520px;
-      object-fit: cover;
-      display: block;
-      border-bottom: 4px solid var(--rose);
-      filter: contrast(1.05) saturate(1.1);
-    }
+/* TITRE */
+h1{
+  font-family:"Playfair Display",serif;
+  font-size:3em;
+  margin:15px 0 5px;
+  color:var(--rose);
+}
 
-    h1 {
-      font-family: "Playfair Display", serif;
-      font-size: 3em;
-      margin: 15px 0 5px;
-      color: var(--rose);
-    }
+header p{
+  margin:0 0 15px;
+  font-style:italic;
+  color:#444;
+}
 
-    header p {
-      margin: 0 0 20px;
-      font-style: italic;
-      color: #444;
-    }
+/* ===== MAIN ===== */
+main{
+  max-width:900px;
+  margin:0 auto;
+  padding:30px 20px;
+  position:relative;
+  z-index:2;
+}
 
-    main {
-      position: relative;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 30px 20px;
-    }
+.box{
+  background:rgba(255,255,255,0.75);
+  border-left:5px solid var(--rose);
+  padding:20px;
+  margin:20px 0;
+  box-shadow:0 6px 20px rgba(0,0,0,0.08);
+  backdrop-filter: blur(2px);
+}
 
-    .box {
-      background: rgba(255,255,255,0.75);
-      border: 1px solid rgba(0,0,0,0.08);
-      border-left: 5px solid var(--rose);
-      padding: 20px;
-      margin: 20px 0;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-      backdrop-filter: blur(2px);
-    }
+h2{
+  font-family:"Playfair Display",serif;
+  color:var(--brun);
+  margin-top:0;
+}
 
-    h2 {
-      font-family: "Playfair Display", serif;
-      color: var(--brun);
-      margin-top: 0;
-    }
+/* LIENS */
+a{
+  color:var(--rose);
+  text-decoration:none;
+}
 
-    a {
-      color: var(--rose);
-      text-decoration: none;
-    }
+a:hover{
+  text-decoration:underline;
+}
 
-    a:hover {
-      text-decoration: underline;
-    }
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  font-size:0.8em;
+  color:#555;
+}
 
-    footer {
-      text-align: center;
-      padding: 30px;
-      font-size: 0.8em;
-      color: #555;
-      margin-top: 40px;
-    }
-  </style>
+/* ===== EFFET PAGE QUI TOURNE ===== */
+.magazine.flipped header{
+  transform:rotateY(-160deg) scale(0.95);
+  box-shadow:-40px 0 80px rgba(0,0,0,0.25);
+  filter:brightness(0.9) contrast(0.95);
+}
+
+/* petit effet profondeur */
+header, main, footer{
+  transform-style:preserve-3d;
+}
+</style>
 </head>
 
 <body>
 
-<header>
+<div class="magazine" id="magazine">
 
-  <!-- LOGO -->
+<header onclick="turnPage()">
+
   <div class="logo">
     <img src="LOGO-DONA-4.png" alt="Logo">
   </div>
 
-  <!-- BANNIÈRE XXL -->
   <div class="banner">
-    <img src="banniere-sd.jpg" alt="Bannière Sidaris">
+    <img src="banniere-sd.jpg" alt="Bannière">
   </div>
 
   <h1>Sidaris French Connection</h1>
-  <p>Cinéma d’exploitation • archives • VHS culture • glamour 80s</p>
+  <p>Cinéma d’exploitation • archives • VHS culture</p>
 
 </header>
 
@@ -170,6 +189,14 @@
 <footer>
   © Sidaris French Connection — archive cinéma d’exploitation
 </footer>
+
+</div>
+
+<script>
+function turnPage(){
+  document.getElementById("magazine").classList.toggle("flipped");
+}
+</script>
 
 </body>
 </html>
