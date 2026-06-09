@@ -29,7 +29,7 @@ body{
   color:#1a1a1a;
 }
 
-/* voile léger lisible */
+/* voile léger */
 body::before{
   content:"";
   position:fixed;
@@ -40,7 +40,7 @@ body::before{
 }
 
 /* =======================
-   GRAIN CINÉMA (VISIBLE)
+   GRAIN FILM 35MM
 ======================= */
 
 body::after{
@@ -50,7 +50,7 @@ body::after{
   pointer-events:none;
   z-index:50;
 
-  opacity:0.2;
+  opacity:0.18;
 
   background-image:url("https://grainy-gradients.vercel.app/noise.svg");
   background-size:140px 140px;
@@ -62,19 +62,60 @@ body::after{
   0%{transform:translate(0,0);}
   25%{transform:translate(-1px,1px);}
   50%{transform:translate(1px,-1px);}
-  75%{transform:translate(-1px,0);}
+  75%{transform:translate(1px,0);}
   100%{transform:translate(0,0);}
 }
 
 /* =======================
-   POUSSIÈRE 35MM
+   VHS TRACKING GLITCH
+======================= */
+
+@keyframes vhsGlitch {
+  0%   { transform: translate(0,0); }
+  10%  { transform: translate(-2px,1px); }
+  20%  { transform: translate(2px,-1px); }
+  30%  { transform: translate(-1px,0px); }
+  40%  { transform: translate(1px,1px); }
+  50%  { transform: translate(0,0); }
+  60%  { transform: translate(-2px,-1px); }
+  70%  { transform: translate(2px,1px); }
+  80%  { transform: translate(-1px,0px); }
+  90%  { transform: translate(1px,-1px); }
+  100% { transform: translate(0,0); }
+}
+
+.vhs{
+  animation:vhsGlitch 0.12s infinite;
+}
+
+/* scanlines VHS */
+.vhs::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:60;
+
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.05),
+    rgba(0,0,0,0.05) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+
+  opacity:0.4;
+}
+
+/* =======================
+   POUSSIÈRE
 ======================= */
 
 .dust{
   position:fixed;
   width:3px;
   height:3px;
-  background:rgba(255,255,255,0.5);
+  background:rgba(255,255,255,0.4);
   border-radius:50%;
   pointer-events:none;
   z-index:40;
@@ -83,15 +124,9 @@ body::after{
 }
 
 @keyframes dustFloat{
-  0%{
-    transform:translateY(100vh);
-    opacity:0;
-  }
+  0%{transform:translateY(100vh);opacity:0;}
   10%{opacity:0.6;}
-  100%{
-    transform:translateY(-10vh);
-    opacity:0;
-  }
+  100%{transform:translateY(-10vh);opacity:0;}
 }
 
 /* =======================
@@ -114,18 +149,13 @@ header{
   backdrop-filter:blur(2px);
 
   border-bottom:2px solid var(--rose);
-
-  transform-origin:left center;
-  transition:transform 1s ease, box-shadow 1s ease;
 }
 
-/* LOGO */
 .logo img{
   height:110px;
   margin-top:20px;
 }
 
-/* BANNIÈRE */
 .banner img{
   width:100%;
   max-height:520px;
@@ -134,7 +164,6 @@ header{
   border-bottom:4px solid var(--rose);
 }
 
-/* TITRE */
 h1{
   font-family:"Playfair Display",serif;
   font-size:3em;
@@ -149,7 +178,7 @@ header p{
 }
 
 /* =======================
-   CONTENU
+   CONTENT
 ======================= */
 
 main{
@@ -172,7 +201,6 @@ h2{
   margin-top:0;
 }
 
-/* LINKS */
 a{
   color:var(--rose);
   text-decoration:none;
@@ -181,28 +209,18 @@ a:hover{
   text-decoration:underline;
 }
 
-/* FOOTER */
 footer{
   text-align:center;
   padding:30px;
   font-size:0.8em;
   color:#555;
 }
-
-/* =======================
-   PAGE FLIP
-======================= */
-
-.magazine.flipped header{
-  transform:rotateY(-140deg);
-  box-shadow:-30px 0 60px rgba(0,0,0,0.3);
-}
 </style>
 </head>
 
 <body>
 
-<div class="magazine" id="magazine">
+<div class="magazine vhs" id="magazine">
 
 <header onclick="turnPage()">
 
@@ -223,9 +241,7 @@ footer{
 
   <div class="box">
     <h2>À propos</h2>
-    <p>
-      Fan club français des œuvres d’Andy Sidaris et du cinéma d’exploitation 80s.
-    </p>
+    <p>Fan club français des œuvres d’Andy Sidaris et du cinéma exploitation 80s.</p>
   </div>
 
   <div class="box">
@@ -259,7 +275,7 @@ function turnPage(){
   document.getElementById("magazine").classList.toggle("flipped");
 }
 
-/* poussière fiable */
+/* poussière */
 for(let i=0;i<50;i++){
   const d=document.createElement("div");
   d.className="dust";
