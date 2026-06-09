@@ -16,7 +16,7 @@
 }
 
 /* =======================
-   BACKGROUND PAPIER
+   BACKGROUND
 ======================= */
 
 body{
@@ -39,7 +39,7 @@ body::before{
 }
 
 /* =======================
-   GRAIN CINÉMA
+   GRAIN
 ======================= */
 
 body::after{
@@ -54,7 +54,7 @@ body::after{
   background-image:url("https://grainy-gradients.vercel.app/noise.svg");
   background-size:150px 150px;
 
-  animation:grain 0.4s steps(2) infinite;
+  animation:grain 0.35s steps(2) infinite;
 }
 
 @keyframes grain{
@@ -66,39 +66,75 @@ body::after{
 }
 
 /* =======================
-   VHS MICRO TRACKING (IMPORTANT)
+   VHS TRACKING BAR (IMPORTANT)
 ======================= */
 
-@keyframes vhsMicro {
-  0%   { transform: translate(0,0); }
-  92%  { transform: translate(0,0); }   /* stable 92% du temps */
-  93%  { transform: translate(1px,0); }  /* micro shift 1px */
-  94%  { transform: translate(-1px,0); }
-  95%  { transform: translate(0,1px); }
-  96%  { transform: translate(0,0); }
-  100% { transform: translate(0,0); }
+.vhs-wrap{
+  position:relative;
 }
 
-.vhs{
-  animation:vhsMicro 6s infinite; /* 🔥 lent */
-}
-
-/* scanlines légères */
-.vhs::after{
-  content:"";
+/* la ligne horizontale */
+.vhs-bar{
   position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:60;
+  left:0;
+  width:100%;
+  height:80px; /* zone de déformation */
 
-  background:repeating-linear-gradient(
+  top:-80px;
+
+  z-index:80;
+  pointer-events:none;
+
+  background:linear-gradient(
     to bottom,
-    rgba(0,0,0,0.04),
-    rgba(0,0,0,0.04) 1px,
-    transparent 3px
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.05) 40%,
+    rgba(255,255,255,0.25) 50%,
+    rgba(255,255,255,0.05) 60%,
+    rgba(255,255,255,0) 100%
   );
 
-  opacity:0.25;
+  mix-blend-mode:screen;
+
+  animation:trackingMove 6s linear infinite;
+}
+
+/* déplacement vertical lent */
+@keyframes trackingMove {
+  0%   { top:-100px; }
+  100% { top:110vh; }
+}
+
+/* déformation sous la ligne */
+.vhs-bar::after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:inherit;
+
+  animation:wiggle 0.2s infinite;
+}
+
+@keyframes wiggle {
+  0%   { transform:translateX(0); }
+  25%  { transform:translateX(2px); }
+  50%  { transform:translateX(-2px); }
+  75%  { transform:translateX(1px); }
+  100% { transform:translateX(0); }
+}
+
+/* léger drift global (TRÈS subtil) */
+.vhs{
+  animation:vhsDrift 8s infinite;
+}
+
+@keyframes vhsDrift{
+  0%,92% { transform:translate(0,0); }
+  93% { transform:translate(1px,0); }
+  94% { transform:translate(-1px,0); }
+  95% { transform:translate(0,1px); }
+  100% { transform:translate(0,0); }
 }
 
 /* =======================
@@ -127,10 +163,13 @@ body::after{
    STRUCTURE
 ======================= */
 
+body{
+  overflow-x:hidden;
+}
+
 .magazine{
   position:relative;
   z-index:2;
-  perspective:1500px;
 }
 
 header{
@@ -177,7 +216,6 @@ main{
   border-left:5px solid var(--rose);
   padding:20px;
   margin:20px 0;
-  box-shadow:0 6px 20px rgba(0,0,0,0.08);
 }
 
 h2{
@@ -201,9 +239,14 @@ footer{
 
 <body>
 
-<div class="magazine vhs" id="magazine">
+<div class="vhs-wrap">
 
-<header onclick="turnPage()">
+<!-- VHS TRACKING BAR -->
+<div class="vhs-bar"></div>
+
+<div class="magazine vhs">
+
+<header>
 
   <div class="logo">
     <img src="LOGO-DONA-4.png" alt="Logo">
@@ -237,9 +280,9 @@ footer{
   <div class="box">
     <h2>Liens</h2>
     <p>
-      Instagram : <a href="https://www.instagram.com/sidarisfrenchconnection" target="_blank">Profil</a><br>
-      SensCritique : <a href="https://www.senscritique.com/SidarisFrenchConnect" target="_blank">Profil</a><br>
-      Linktree : <a href="https://linktr.ee/SidarisFrenchConnection" target="_blank">Hub</a>
+      Instagram : <a href="https://www.instagram.com/sidarisfrenchconnection">Profil</a><br>
+      SensCritique : <a href="https://www.senscritique.com/SidarisFrenchConnect">Profil</a><br>
+      Linktree : <a href="https://linktr.ee/SidarisFrenchConnection">Hub</a>
     </p>
   </div>
 
@@ -250,23 +293,16 @@ footer{
 </footer>
 
 </div>
+</div>
 
 <script>
-function turnPage(){
-  document.getElementById("magazine").classList.toggle("flipped");
-}
-
 /* poussière */
 for(let i=0;i<45;i++){
   const d=document.createElement("div");
   d.className="dust";
-
   d.style.left=Math.random()*100+"vw";
   d.style.top=Math.random()*100+"vh";
-
   d.style.animationDuration=(3+Math.random()*5)+"s";
-  d.style.animationDelay=(Math.random()*5)+"s";
-
   document.body.appendChild(d);
 }
 </script>
